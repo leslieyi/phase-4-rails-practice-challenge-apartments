@@ -1,6 +1,10 @@
 class LeasesController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
+    def index 
+        render json: Lease.all
+    end
+
     def create
         lease = Lease.create(lease_params)
         render json: lease, status: :created 
